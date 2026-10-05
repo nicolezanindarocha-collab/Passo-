@@ -1,40 +1,77 @@
-import Header from '../components/Header'
-import BottomNav from '../components/BottomNav'
+import { useState } from "react";
 
-export default function Meta() {
+function Meta({ navegar }) {
+  const [meta, setMeta] = useState(8000);
+
+  const opcoes = [
+    5000,
+    8000,
+    10000,
+    12000,
+  ];
+
   return (
-    <div className="min-h-screen pb-24">
-      <Header />
+    <div className="page">
 
-      <main className="max-w-md mx-auto px-5 py-6">
-        <h2 className="text-2xl font-bold">
-          Minha meta
-        </h2>
+      <main className="meta-page">
 
-        <p className="text-gray-500 mt-2">
-          Defina quantos passos você deseja dar por dia.
+        <button
+          className="back-button meta-back"
+          onClick={() => navegar("home")}
+        >
+          ‹
+        </button>
+
+        <h1>Meta diária</h1>
+
+        <p>
+          Escolha uma meta de passos
+          <br />
+          para cada dia.
         </p>
 
-        <div className="bg-white rounded-3xl p-6 mt-6 shadow-sm text-center">
-          <p className="text-gray-400">
-            Meta diária
-          </p>
+        <div className="meta-options">
 
-          <p className="text-5xl font-bold text-blue-600 mt-4">
-            10.000
-          </p>
+          {opcoes.map((opcao) => (
 
-          <p className="text-gray-400 mt-2">
-            passos por dia
-          </p>
+            <button
+              key={opcao}
+              className={
+                meta === opcao
+                  ? "meta-option selected"
+                  : "meta-option"
+              }
+              onClick={() => setMeta(opcao)}
+            >
 
-          <button className="w-full bg-blue-600 text-white rounded-xl py-3 mt-6 font-semibold">
-            Alterar meta
-          </button>
+              <span className="radio">
+
+                {meta === opcao && "✓"}
+
+              </span>
+
+              <span>
+                {opcao.toLocaleString("pt-BR")}
+                {" "}passos
+              </span>
+
+            </button>
+
+          ))}
+
         </div>
+
+        <button
+          className="save-button"
+          onClick={() => navegar("home")}
+        >
+          Salvar meta
+        </button>
+
       </main>
 
-      <BottomNav />
     </div>
-  )
+  );
 }
+
+export default Meta;

@@ -1,32 +1,139 @@
-import Header from '../components/Header'
-import BottomNav from '../components/BottomNav'
+import BottomNav from "../components/BottomNav";
 
-export default function Perfil() {
+function Perfil({ navegar }) {
   return (
-    <div className="min-h-screen pb-24">
-      <Header />
+    <div className="page">
 
-      <main className="max-w-md mx-auto px-5 py-6">
-        <h2 className="text-2xl font-bold">
-          Meu perfil
-        </h2>
+      <header className="page-header">
+        <h1>Perfil</h1>
+      </header>
 
-        <div className="bg-white rounded-3xl p-6 mt-6 shadow-sm">
-          <div className="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center text-2xl font-bold text-blue-600 mx-auto">
-            N
+      <main className="profile-content">
+
+        <div className="profile-user">
+
+          <div className="avatar">
+            G4
           </div>
 
-          <h3 className="text-xl font-bold text-center mt-4">
-            Nicole
-          </h3>
+          <div className="profile-info">
+            <strong>G4</strong>
+            <span>Usuário</span>
+          </div>
 
-          <p className="text-gray-400 text-center mt-1">
-            Usuária do Passo+
-          </p>
         </div>
+
+        <div className="settings-card">
+
+          <button
+            onClick={() => navegar("meta")}
+          >
+
+            <span className="setting-icon">
+              🎯
+            </span>
+
+            <div className="setting-info">
+
+              <strong>Meta diária</strong>
+
+              <small>
+                8.000 passos
+              </small>
+
+            </div>
+
+            <span>›</span>
+
+          </button>
+
+          <button>
+
+            <span className="setting-icon">
+              🔔
+            </span>
+
+            <div className="setting-info">
+
+              <strong>Notificações</strong>
+
+              <small>
+                Ativadas
+              </small>
+
+            </div>
+
+            <span>›</span>
+
+          </button>
+
+          <button>
+
+            <span className="setting-icon">
+              ⚙️
+            </span>
+
+            <div className="setting-info">
+
+              <strong>Configurações</strong>
+
+              <small>
+                Preferências
+              </small>
+
+            </div>
+
+            <span>›</span>
+
+          </button>
+
+        </div>
+
+        <div className="settings-card">
+
+          <button>
+
+            <span className="setting-icon">
+              ℹ️
+            </span>
+
+            <div className="setting-info">
+
+              <strong>Sobre o Passo+</strong>
+
+            </div>
+
+            <span>›</span>
+
+          </button>
+
+          <button>
+
+            <span className="setting-icon">
+              ❓
+            </span>
+
+            <div className="setting-info">
+
+              <strong>Ajuda</strong>
+
+            </div>
+
+            <span>›</span>
+
+          </button>
+
+        </div>
+
       </main>
 
-      <BottomNav />
+      <BottomNav
+        navegar={navegar}
+        paginaAtual="perfil"
+      />
+
     </div>
-  )
+  );
 }
+
+export default Perfil;

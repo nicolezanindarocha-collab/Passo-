@@ -1,32 +1,110 @@
-import Header from '../components/Header'
-import BottomNav from '../components/BottomNav'
+import BottomNav from "../components/BottomNav";
 
-export default function Historico() {
+function Historico({ navegar }) {
+  const dias = [
+    {
+      data: "16 de set.",
+      passos: "6.842",
+    },
+    {
+      data: "15 de set.",
+      passos: "8.120",
+    },
+    {
+      data: "14 de set.",
+      passos: "7.240",
+    },
+    {
+      data: "13 de set.",
+      passos: "9.430",
+    },
+    {
+      data: "12 de set.",
+      passos: "7.890",
+    },
+  ];
+
   return (
-    <div className="min-h-screen pb-24">
-      <Header />
+    <div className="page">
 
-      <main className="max-w-md mx-auto px-5 py-6">
-        <h2 className="text-2xl font-bold">
-          Histórico
+      <header className="page-header">
+
+        <div>
+          <h1>Histórico</h1>
+          <p>Seus passos recentes</p>
+        </div>
+
+      </header>
+
+      <main className="history-content">
+
+        <div className="calendar">
+
+          <div className="calendar-week">
+            <span>D</span>
+            <span>S</span>
+            <span>T</span>
+            <span>Q</span>
+            <span>Q</span>
+            <span>S</span>
+            <span>S</span>
+          </div>
+
+          <div className="calendar-days">
+            <span>13</span>
+            <span>14</span>
+            <span>15</span>
+
+            <span className="selected-day">
+              16
+            </span>
+
+            <span>17</span>
+            <span>18</span>
+            <span>19</span>
+          </div>
+
+        </div>
+
+        <h2 className="section-title">
+          Passos por dia
         </h2>
 
-        <p className="text-gray-500 mt-2">
-          Veja sua evolução nos últimos dias.
-        </p>
+        <div className="history-list">
 
-        <div className="bg-white rounded-2xl p-5 mt-6 shadow-sm">
-          <p className="text-gray-400 text-sm">Ontem</p>
-          <p className="text-2xl font-bold mt-2">8.421 passos</p>
+          {dias.map((dia, index) => (
+
+            <button
+              key={index}
+              className="history-item"
+              onClick={() => navegar("detalhes")}
+            >
+
+              <span>{dia.data}</span>
+
+              <div>
+                <strong>
+                  {dia.passos} passos
+                </strong>
+
+                <span>›</span>
+              </div>
+
+            </button>
+
+          ))}
+
         </div>
 
-        <div className="bg-white rounded-2xl p-5 mt-4 shadow-sm">
-          <p className="text-gray-400 text-sm">Domingo</p>
-          <p className="text-2xl font-bold mt-2">7.235 passos</p>
-        </div>
       </main>
 
-      <BottomNav />
+      <BottomNav
+        navegar={navegar}
+        paginaAtual="historico"
+      />
+
     </div>
-  )
+  );
 }
+
+export default Historico;
